@@ -19,7 +19,7 @@ You also can run your masternode at your own computer, but it must be operationa
 
 ### Fresh wallet installation: 
 
-1. Install latest Commercium wallet at your local machine from this link: 
+#### 1. Install latest Commercium wallet at your local machine from this link: 
 
 https://github.com/CommerciumBlockchain/CommerciumContinuum/releases 
 
@@ -46,7 +46,7 @@ move %APPDATA%/Commercium  %APPDATA%/Commercium.backup
 ```
 
 
-2. We must edit our local wallet configuration file `commercium.conf`.You can find `commercium.conf` here:
+#### 2. We must edit our local wallet configuration file `commercium.conf`.You can find `commercium.conf` here:
 
 - Linux: `~/.commercium` directory
 - Windows: `%appdata%/Commercium` folder
@@ -67,7 +67,7 @@ Append this new line to the end of the file (`commercium.conf`):
 
 Save & Close editor.
 
-3. Exit windows wallet. Next we will do a full blockchain rescan to create transaction index.
+#### 3. Exit windows wallet. Next we will do a full blockchain rescan to create transaction index.
 
 Run this command at Windows shell: `commerciumd.exe -reindex`
 
@@ -114,14 +114,14 @@ rm Library/Application\ Support/Commercium/peers.dat
 
 Run new wallet release and wait until all block will be resynced. At QT Windows wallet check the tap "commerciumd" and wait until "Downloading blocks" will be 100% done. If you run `-reindex` at command line shell then close your `cmd` shell and run QT wallet.
 
-4. At this step we will send your CMM masternode coins to some new collateral address (you'll receive masternode reward to this address). Create new `t-Addr`. You can do this at "Receive" tab. Then send coins to this address from "send" tab. 
+#### 4. At this step we will send your CMM masternode coins to some new collateral address (you'll receive masternode reward to this address). Create new `t-Addr`. You can do this at "Receive" tab. Then send coins to this address from "send" tab. 
 
 Transfer **exactly** 100000 CMM to this address. 
 
 **WARNING:** save new private key for this new address and make `wallet.dat` backup!
 
 
-5. Then need to edit masternode config file to setup masternode:
+#### 5. Then need to edit masternode config file to setup masternode:
 
 Open `masternode.conf` for editing as you do it before with other config file.
 
@@ -140,26 +140,26 @@ As you see above to setup masternode we must have the following data:
 * **OUTPUTINDEX** - collateral output index (is usually `0`)
 
 
-6. Bellow is where all this requested information comes from:
+#### 6. Bellow is where all this requested information comes from:
 
 
-6.1 Generating **NODEKEY** masternode private key. Run this at _local_ wallet where you store your coins:
+##### 6.1 Generating **NODEKEY** masternode private key. Run this at _local_ wallet where you store your coins:
 
 `commercium-cli.exe masternode genkey `
 
 Output of this command is your Masternode Private Key (**NODEKEY**)
 
-6.2 **OUTPUTTXID** and **OUTPUTINDEX**
+##### 6.2 **OUTPUTTXID** and **OUTPUTINDEX**
 
 `commercium-cli.exe masternode outputs`
 
 show "txhash" and "outputidx". txhash is your **OUTPUTTXID** / outputid is **OUTPUTINDEX**
 
-6.3 Now you are ready to add all this information to `masternode.conf`.
+##### 6.3 Now you are ready to add all this information to `masternode.conf`.
 
 Format: `ALIAS IP:2019 NODEKEY OUTPUTTXID OUTPUTINDEX` (separated with spaces, only IP and PORT separated with `:`) 
 
-6.4 Save your `masternode.conf` changes.
+##### 6.4 Save your `masternode.conf` changes.
 
 
 
@@ -179,9 +179,9 @@ If you need video instruction check this video: https://youtu.be/vVVhtQ5Wd3g
 
 After connection enter your username and password then you will see linux shell.
 
-_0. (not neccessory step). For securety purposes you can run your masternode as regular linux user, not `root`. If you want this then create new user `adduser cmmuser` (run as root) and then connect to your VPS with Putty again and login with this new user login and password._
+#### _0. (not neccessory step). For securety purposes you can run your masternode as regular linux user, not `root`. If you want this then create new user `adduser cmmuser` (run as root) and then connect to your VPS with Putty again and login with this new user login and password._
 
-1. Enter this commands at linux shell: 
+#### 1. Enter this commands at linux shell: 
 
 `cd ~` _(to be sure that you are at user home directory)_
 
@@ -190,11 +190,11 @@ It will download archive with commercium to current directory.
 `wget https://github.com/CommerciumBlockchain/CommerciumContinuum/releases/download/v1.0.5/commercium_continuum-v1.0.5-linux.tar.gz`
 
 
-2. Extract files with following commands: 
+#### 2. Extract files with following commands: 
 
 `tar -xzvf commercium_continuum-v1.0.5-linux.tar.gz`
 
-3. Make directiry for commercium configuration files and database:
+#### 3. Make directiry for commercium configuration files and database:
 
 `mkdir .commercium`
 
