@@ -212,7 +212,7 @@ _Note: It will extract all commercium files to `commercium_continuum-v1.0.5-linu
 
 `mkdir .commercium`
 
-And then we will create `commercium.config`:
+And then we will create `commercium.conf`:
 
 `echo -e "txindex=1\ndaemon=1\nrpcuser=CHANGEthisPASSWORD]\nrpcpassword=CHANGEthisPASSWORD\nmasternode=1\nmasternodeprivkey=NODEKEY" > .commercium/commercium.conf`
 
