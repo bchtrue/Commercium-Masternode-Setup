@@ -12,7 +12,7 @@ You also can run your masternode at your own computer, but it must be operationa
 - VPS with at least 1024 RAM, 1 CPU, >20 GB HDD or more
 - Commercium wallet at local Windows/Linux/MacOs PC and VPS
 - VPS: better to use latest ubunty (18.04). If you run 16.04 just install: `apt-get install libgomp1`
-- putty remote shell client (putty.org)
+- `putty` remote shell client (putty.org)
 
 
 # PART 1: Local machine setup
@@ -26,10 +26,11 @@ https://github.com/CommerciumBlockchain/CommerciumContinuum/releases
 Follow this video instructions for help:
 
 https://youtu.be/AQMogS3Enjs (Windows)
+
 https://youtu.be/xuLRBuvaSgU (MacOS)
 
 
-### Upgrade old wallet
+##### Upgrade old wallet
 
 If you are already have old Commercium wallet then backup your data and export your private keys. You will import them later to new wallet:
 
@@ -38,7 +39,7 @@ Buckup `~/.commercium` - directory for MacOs/Linux
 
 Windows users (use command shell `cmd.exe`). 
 
-Press `Win+r` -> write "cmd" -> enter -> copy&paste his commands into the shell: 
+Press `Win+r` -> write `cmd` -> press Enter -> copy&paste this commands into the shell: 
 
 ```
 move %APPDATA%/ZcashParams  %APPDATA%/ZcashParams.backup
@@ -58,7 +59,10 @@ Open your shell. _How to do this described at previous step under "Upgrade old w
 cd %appdata%/Commercium
 notepad commercium.conf 
 or better alternative:
-open `commercium.conf` for editing with other editor. I suggest to edit it with external editor like Notepad++, because the  default notepad on Windows 7 did not recognize unix wrapping at this file)
+open `commercium.conf` for editing with other editor. 
+I suggest to edit it with external editor like Notepad++,
+because the default notepad on Windows 7
+did not recognize and break unix wrapping at this file.
 ```
 
 Append this new line to the end of the file (`commercium.conf`):
@@ -73,7 +77,7 @@ Run this command at Windows shell: `commerciumd.exe -reindex`
 
 Linux shell: `./commercium -reindex`
 
-OR ALTERNATIVE: 
+**OR ALTERNATIVE:** 
 
 Windows:
 
@@ -114,11 +118,13 @@ rm Library/Application\ Support/Commercium/peers.dat
 
 Run new wallet release and wait until all block will be resynced. At QT Windows wallet check the tap "commerciumd" and wait until "Downloading blocks" will be 100% done. If you run `-reindex` at command line shell then close your `cmd` shell and run QT wallet.
 
-#### 4. At this step we will send your CMM masternode coins to some new collateral address (you'll receive masternode reward to this address). Create new `t-Addr`. You can do this at "Receive" tab. Then send coins to this address from "send" tab. 
+#### 4. At this step we will send your CMM masternode coins to some new collateral address (you'll receive masternode reward to this address).
 
-Transfer **exactly** 100000 CMM to this address. 
+Create new `t-Addr`. You can do this at "Receive" tab. Then send coins to this address from "send" tab. 
 
-**WARNING:** save new private key for this new address and make `wallet.dat` backup!
+Transfer _exactly_ 100000 CMM to this address. 
+
+**WARNING:** save new private key for this new address and make `wallet.dat` backup now!
 
 
 #### 5. Then need to edit masternode config file to setup masternode:
@@ -138,6 +144,7 @@ As you see above to setup masternode we must have the following data:
 * **NODEKEY** - masternode private key (looks like generated numbers and charts)
 * **OUTPUTTXID** - collateral output txid
 * **OUTPUTINDEX** - collateral output index (is usually `0`)
+
 
 
 #### 6. Bellow is where all this requested information comes from:
@@ -169,7 +176,9 @@ Format: `ALIAS IP:2019 NODEKEY OUTPUTTXID OUTPUTINDEX` (separated with spaces, o
 
 # PART 2 (VPS Setup)
 
-### Masternode setup process: 
+All local wallet configuration done. Now, we will setup VPS commercium wallet.
+
+### Masternode setup process (VPS): 
 
 Connect with `Putty` to your VPS. Just enter IP address of your VPS at the Putty windows and login with your VPS username/password.
 
@@ -179,7 +188,9 @@ If you need video instruction check this video: https://youtu.be/vVVhtQ5Wd3g
 
 After connection enter your username and password then you will see linux shell.
 
-#### _0. (not neccessory step). For securety purposes you can run your masternode as regular linux user, not `root`. If you want this then create new user `adduser cmmuser` (run as root) and then connect to your VPS with Putty again and login with this new user login and password._
+#### _0. (not neccessory step). Run as regular user not root. 
+
+For securety purposes you can run your masternode as regular linux user, not `root`. If you want this then create new user `adduser cmmuser` (run as root) and then connect to your VPS with Putty again and login with this new user login and password._
 
 #### 1. Enter this commands at linux shell: 
 
@@ -189,12 +200,15 @@ It will download archive with commercium to current directory.
 
 `wget https://github.com/CommerciumBlockchain/CommerciumContinuum/releases/download/v1.0.5/commercium_continuum-v1.0.5-linux.tar.gz`
 
+_Hint: You can check available files at the current directory with `ls` command to check that `commercium_continuum-v1.0.5-linux.tar.gz` is here! _
 
 #### 2. Extract files with following commands: 
 
 `tar -xzvf commercium_continuum-v1.0.5-linux.tar.gz`
 
-#### 3. Make directiry for commercium configuration files and database:
+_Note: It will extract all commercium files to `commercium_continuum-v1.0.5-linux` directory_
+
+#### 3. Make directiry for configuration files and database:
 
 `mkdir .commercium`
 
